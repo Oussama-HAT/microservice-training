@@ -16,6 +16,7 @@
     <modules>
         <module>balance-service</module>
         <module>transaction-service</module>
+        <module>administration-service</module>
     </modules>
 
     <properties>
