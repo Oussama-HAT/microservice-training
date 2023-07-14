@@ -92,7 +92,17 @@
             <ModuleSettings />
           </value>
         </entry>
+        <entry key="authentification-service">
+          <value>
+            <ModuleSettings />
+          </value>
+        </entry>
         <entry key="balance-service">
+          <value>
+            <ModuleSettings />
+          </value>
+        </entry>
+        <entry key="customer-service">
           <value>
             <ModuleSettings />
           </value>

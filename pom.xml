@@ -17,6 +17,8 @@
         <module>balance-service</module>
         <module>transaction-service</module>
         <module>administration-service</module>
+        <module>authentification-service</module>
+        <module>customer-service</module>
     </modules>
 
     <properties>
