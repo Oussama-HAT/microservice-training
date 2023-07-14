@@ -16,7 +16,7 @@ public class AccountRequestMapper implements Mapper<AccountRequestDto, Account> 
 
     @Override
     public AccountRequestDto entityToDto(Account entity) {
-        return entity != null ? new AccountRequestDto(entity.getAccountNo(), entity.getUsername(),null,null) : null;
+        return entity != null ? new AccountRequestDto(entity.getAccountNo(), entity.getUsername(),null,null,null) : null;
     }
 
     @Override

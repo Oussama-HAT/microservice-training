@@ -5,6 +5,8 @@ import com.sqli.customerservice.dto.LoginRequest;
 import com.sqli.customerservice.entities.Account;
 import com.sqli.customerservice.security.JwtUtils;
 import com.sqli.customerservice.services.Impl.UserDetailsServiceImpl;
+import com.sqli.customerservice.services.KafkaProducerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +25,9 @@ public class AuthController {
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtUtils jwtUtils;
     private final BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    KafkaProducerService kafkaProducerService;
 
     public AuthController(AuthenticationManager authenticationManager,
                           UserDetailsServiceImpl userDetailsService,
@@ -46,7 +51,6 @@ public class AuthController {
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
         final String token = jwtUtils.generateToken((Account) userDetails);
-
 
         return ResponseEntity.ok(new JwtResponse(token));
     }

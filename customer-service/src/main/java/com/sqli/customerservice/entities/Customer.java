@@ -18,7 +18,7 @@ import java.util.Date;
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = -1L;
-
+@Id
     @Column(name = "account_no")
     private Long accountNo;
 
