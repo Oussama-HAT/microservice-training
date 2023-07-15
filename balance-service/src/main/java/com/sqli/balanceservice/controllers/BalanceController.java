@@ -1,5 +1,6 @@
 package com.sqli.balanceservice.controllers;
 
+import com.sqli.balanceservice.dto.BalanceDto;
 import com.sqli.balanceservice.dto.BalanceRequestDto;
 import com.sqli.balanceservice.dto.BalanceResponseDto;
 import com.sqli.balanceservice.services.BalanceService;
@@ -37,14 +38,20 @@ public class BalanceController {
     }
 
     @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    //@PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> updateBalance(@RequestParam("accountFrom") Long accountFrom,
-                                           @RequestParam("accountTo") Long accountTo,
-                                           @RequestParam("amount") BigDecimal amount) {
-        balanceService.updateBalance(accountFrom, accountTo, amount);
+    public ResponseEntity<?> updateBalance(@RequestBody BalanceDto balanceDto) {
+        balanceService.updateBalance(balanceDto);
         GenericResponse response = new GenericResponse();
         response.setMessage(Messages.BALANCE_UPDATED);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    //@PreAuthorize("hasRole('ROLE_CUSTUMER')")
+    public ResponseEntity<Boolean> verifyBalance(@RequestParam("accountId") Long accountId,
+                                                 @RequestParam("amount") BigDecimal amount) {
+
+        boolean isBalanceStillAvailable = balanceService.isBalanceAvailable(accountId,amount);
+        return ResponseEntity.status(HttpStatus.OK).body(isBalanceStillAvailable);
     }
 
 }

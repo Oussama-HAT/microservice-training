@@ -1,5 +1,6 @@
 package com.sqli.balanceservice.services;
 
+import com.sqli.balanceservice.dto.BalanceDto;
 import com.sqli.balanceservice.dto.BalanceRequestDto;
 import com.sqli.balanceservice.dto.BalanceResponseDto;
 
@@ -11,8 +12,8 @@ public interface BalanceService {
 
     void createBalance(BalanceRequestDto balanceRequestDto);
 
-    boolean isBalanceAvailable(Long accountId);
+    boolean isBalanceAvailable(Long accountId, BigDecimal amount);
 
-    void updateBalance(Long accountFrom , Long accountTo, BigDecimal amount);
+    void updateBalance(BalanceDto balanceDto);
 
 }
